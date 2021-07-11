@@ -1,0 +1,28 @@
+<script>
+    $(document).ready(function () {
+        var quizID = Number(window.location.pathname.split('/quiz/')[1]);
+        localStorage.setItem('quizID', quizID);
+        setTimeout(() => {
+            checkUser();
+        }, 5000);
+    });
+
+    function checkUser() {
+        var user = {};
+        user.id = localStorage.getItem('userID');
+        user.church = localStorage.getItem('church');
+        user.language = localStorage.getItem('language');
+        user.email = localStorage.getItem('email');
+        user.phone = localStorage.getItem('phone');
+        var quizID = Number(localStorage.getItem('quizID'));
+        if (user.id && user.language && user.church && (user.email || user.phone)) {
+            window.location.href = '/attempt/quiz-main/' + quizID;
+        } else {
+            localStorage.clear();
+            localStorage.setItem("quizID", Number(quizID));
+            window.location.href = '/user-details';
+        }
+    }
+</script>
+<div class="quiz-home-bg">
+</div>

@@ -1,0 +1,48 @@
+<script src="/js/attempt/user-details.js"></script>
+
+<div id="user-details-page" class="quiz-main-bg p-3">
+  <div class="col-12 col-sm-10 col-md-5 mx-auto d-flex flex-column align-items-center justify-content-center h-100">
+    <div>
+      <h3 class="text-center font-weight-bold">USER DETAILS</h3>
+    </div>
+    <form novalidate="true" @submit="next($event)" class="mt-3 mb-5 w-100">
+      <div class="d-flex justify-content-center align-items-center">
+        <img src="/img/user-icon.svg" alt="" />
+        <input id="fullname" type="text" required="true" name="full-name" @focus="toggleNextBtn(false, 'name')"
+          @blur="toggleNextBtn(true, 'name')" v-model="user.name"
+          class="bg-transparent text-black ml-3 form-control br-20px" placeholder="Name" />
+      </div>
+      <p v-if="formError && formError.name" class="ml-5 mt-1 mb-0 pl-3 text-danger text-sm">\{{formError.name}}</p>
+      <div class="d-flex justify-content-center align-items-center mt-4">
+        <img src="/img/church.svg" alt="" />
+        <input id="church" type="text" required="true" name="church" @focus="toggleNextBtn(false, 'church')"
+          @blur="toggleNextBtn(true, 'church')" v-model="user.church"
+          class="bg-transparent text-black ml-3 form-control br-20px" placeholder="Church" />
+      </div>
+      <p v-if="formError && formError.church" class="ml-5 mt-1 mb-0 pl-3 text-danger text-sm">\{{formError.church}}</p>
+      <div class="d-flex justify-content-center align-items-center mt-4">
+        <img src="/img/user-email.svg" alt="" />
+        <input id="phone_email" type="text" name="phone-email" v-model="user.phone_email"
+          class="bg-transparent text-black ml-3 form-control br-20px" @focus="toggleNextBtn(false, 'phone_email')"
+          @blur="toggleNextBtn(true, 'phone_email')" placeholder="Phone or Email" />
+      </div>
+      <p v-if="formError && formError.phone_email" class="ml-5 mt-1 mb-0 pl-3 text-danger text-sm">
+        \{{formError.phone_email}}</p>
+      <div class="d-flex justify-content-center align-items-center mt-4">
+        <img src="/img/user-lang.svg" alt="" />
+        <select id="preferred_language" required="true" class="bg-transparent text-black ml-3 form-control br-20px"
+          aria-placeholder="Language" v-model="user.preferred_language" name="preferred_language" id=""
+          @focus="toggleNextBtn(true, 'preferred_language')" @onchange="toggleNextBtn(true, 'preferred_language')">
+          <option disabled="true" selected="true" value="">Language</option>
+          <option value="english">English</option>
+          <option value="tamil">தமிழ்</option>
+        </select>
+      </div>
+      <p v-if="formError && formError.preferred_language" class="ml-5 mt-1 mb-0 pl-3 text-danger text-sm">\{{formError.preferred_language}}
+      </p>
+      <button v-if="showNext" role="button" type="submit" class="bg-transparent outline-none btn bottom-next">
+        <img src="/img/next.svg" alt="" />
+      </button>
+    </form>
+  </div>
+</div>

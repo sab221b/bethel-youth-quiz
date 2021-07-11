@@ -1,0 +1,45 @@
+<script src="/js/questionnaire/list.js"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+></script>
+<div class="main-header bg-secondary">
+  <h1
+    class="h6 d-block d-sm-block d-md-none text-white mb-0 pl-4 w-100"
+  >{{title}}</h1>
+  <h3
+    class="h3 d-none d-sm-none d-md-block text-white mb-0 pl-4 w-100"
+  >{{title}}</h3>
+</div>
+<div id="list-questionnaire" class="px-2 px-sm-3 px-md-4 py-5 mt-5">
+  <div class="table-responsive">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th class="white-space-nowrap" scope="col">S.NO</th>
+          <th class="white-space-nowrap" scope="col">Topic</th>
+          <th class="text-center white-space-nowrap" scope="col">Total Questions</th>
+          <th class="text-center white-space-nowrap" scope="col">Total Score</th>
+          <th
+            class="text-center white-space-nowrap"
+            scope="col"
+          >Auto-present</th>
+          <th class="white-space-nowrap" scope="col">Created at</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="cursor-pointer"
+          v-for="(item, index) in listData"
+          @click="viewQuestionnaire(item.id)"
+        >
+          <th scope="row">\{{index + 1}}</th>
+          <td style="min-width: 150px;">\{{item.topic}}</td>
+          <td class="text-center">\{{item.questions.length}}</td>
+          <td class="text-center">\{{item.total_score}}</td>
+          <td class="text-center">\{{item.auto_presentation}}</td>
+          <td style="min-width: 150px;">\{{item.createdAt | formatDate}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
