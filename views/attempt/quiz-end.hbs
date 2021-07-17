@@ -1,0 +1,27 @@
+<script>
+    function viewResult() {
+        var pathname = window.location.pathname.split('/');
+        window.location.href = '/attempt/quiz/result/' + Number(pathname[4]) + '/' + Number(pathname[5]);
+    }
+</script>
+
+<div id="quiz-end-page">
+    <div class="quiz-main-bg row mx-0 w-100 justify-content-center align-items-center px-3 px-sm-3 px-md-5 py-3">
+       <div class="col-12 col-sm-12 col-md-7">
+            <div>
+            <div class="thank-you-wrapper d-flex justify-content-center align-items-center">
+                <img src="/img/thank-you-img.svg" alt="">
+            </div>
+            <div class="col-md-8">
+                <h5 class="p-2 pt-3 option-card" style="border-radius: 15px !important; white-space:normal !important">
+                <span>Thank you for you answers</span>
+                </h5>
+            </div>
+        </div>
+        <div class="col-md-5 mt-3 pt-3 pt-sm-5 pt-md-5">
+            <button onclick="viewResult()" class="btn p-2 pt-3 option-card" style="background-color: #07c806; font-size: 1.5rem">View
+                Score</button>
+        </div>
+       </div>
+    </div>
+</div>

@@ -4,6 +4,14 @@
   font-weight: normal;
   font-style: normal; }
 
+body {
+  min-width: 100vw;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  padding: 0;
+  margin: 0; }
+
 * {
   font-family: "Arima Madurai"; }
 
@@ -240,7 +248,7 @@ button#search_icon {
   color: #000 !important; }
 
 .form-control {
-  padding: .5rem 1rem !important;
+  padding: 0.5rem 1rem !important;
   font-weight: bold;
   border: 1px solid #000 !important; }
 
@@ -254,4 +262,73 @@ button[type="submit"] {
   box-shadow: none !important; }
 
 select option[disabled] {
-  color: #90B4B8; }
+  color: #90b4b8; }
+
+.bg-black {
+  background: #000 !important; }
+
+.question-card {
+  background: rgba(196, 196, 196, 0.5);
+  border: 0.5px solid #000000;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 6px; }
+
+.option-card {
+  background: rgba(196, 196, 196, 0.5);
+  border: 0.5px solid #000000 !important;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 30px !important;
+  width: 100%;
+  text-align: center; }
+
+.radio-toolbar div input[type="radio"] {
+  display: none; }
+
+.radio-toolbar label {
+  display: inline-block;
+  background-color: transparent;
+  padding: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: bold;
+  line-height: 1.75rem;
+  --tw-text-opacity: 1;
+  cursor: pointer;
+  color: #000; }
+
+.radio-toolbar input[type="radio"]:checked + label .option-card {
+  background-color: rgba(80, 100, 103, var(--tw-bg-opacity));
+  font-weight: bold;
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity)); }
+
+.thank-you-wrapper {
+  background-image: url(/img/thank-you-wrapper.svg);
+  background-repeat: no-repeat;
+  margin: 0 !important;
+  background-size: cover;
+  background-position: center;
+  padding: 2rem 0; }
+
+.score-wrapper {
+  background-image: url(/img/score-wrapper.svg);
+  background-repeat: no-repeat;
+  max-width: 380px;
+  max-height: 380px;
+  margin: 0 !important;
+  background-size: cover;
+  background-position: center;
+  padding: 2rem 0; }
+
+.correct-answer {
+  background-color: #07c806 !important; }
+
+.timer-wrapper {
+  background-color: black;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }

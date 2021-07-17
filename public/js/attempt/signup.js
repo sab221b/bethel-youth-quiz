@@ -90,10 +90,12 @@ function hookVuejs() {
         }
         delete payload.phone_email;
         _self.payload = payload;
+        debugger;
         axios.post("/api/participant/", payload)
           .then(function (response) {
             console.log('user-created', response.data)
             showLoader(false);
+            localStorage.setItem('userName', response.data.name);
             localStorage.setItem('userID', response.data.id);
             localStorage.setItem('church', response.data.church);
             localStorage.setItem('language', response.data.preferred_language);

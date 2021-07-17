@@ -5,10 +5,57 @@
     <div v-if="showLoading" class="loading-bg p-4">
     </div>
 
-    <div v-if="showTimer" class="timer-bg p-4">
+    <div v-if="showTimer" class="timer-bg p-3 bg-black" style="width: 100vw; height: 100vh;">
+        <img src="/img/start-timer.gif" alt="" class="w-100 h-100" />
     </div>
 
-    <div v-if="showQuiz" class="quiz-main-bg p-4">
-
+    <div v-if="showQuiz" class="quiz-main-bg px-3 px-sm-3 px-md-5 py-5">
+        <div v-if="questions.length">
+            <div class="p-2 p-sm-3 p-md-5 text-center question-card">
+                <h5>\{{currentQuestion.question[language]}}</h5>
+            </div>
+            <div class="row mx-0 w-100 mt-5">
+                <div class="col-12 col-sm-12 col-md-8">
+                    <div class="radio-toolbar">
+                        <div v-for="(option, index) in currentQuestion.options[language]" class="w-100">
+                            <input type="radio" :id="'radio-question-' + currentQuestionNo + '-' + index"
+                                class="'radio-question-' + currentQuestionNo"
+                                name="'radio-question-' + currentQuestionNo" :value="option"
+                                @change="selectAnswer('radio-question-' + currentQuestionNo + '-' + index)"
+                                v-model="selectedOption">
+                            <label style="" class="d-flex align-items-center justify-content-between w-full text-center"
+                                :for="'radio-question-' + currentQuestionNo + '-' + index">
+                                <h5 class="mb-0 mr-2 px-3 pb-2 pt-3 option-card">\{{option}}</h5>
+                                <img :src="(index === 0 && '/img/option-A.svg') || (index === 1 && '/img/option-B.svg') || (index === 2 && '/img/option-C.svg')"
+                                    style="width: 60px;" alt="">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-4 d-flex justify-content-between align-items-center">
+                    <div class="d-block d-sm-block d-md-none">
+                        <div class="timer-wrapper">
+                            <h3 class="text-white h1 mb-0 mt-2">\{{currentQuestionNo + 1}} / \{{questions.length}}</h3>
+                        </div>
+                        <p class="text-primary text-center font-weight-bold">Question</p>
+                    </div>
+                   <div class="mx-md-auto">
+                        <div class="timer-wrapper">
+                        <h3 class="text-white display-1 mb-0 mt-2">\{{getCurrentTimer}}</h3>
+                    </div>
+                      <p class="text-primary text-center font-weight-bold">Time left</p>
+                   </div>
+                </div>
+            </div>
+            <div class="w-100 mt-2 mx-auto d-none d-sm-none d-md-block">
+                <div class="timer-wrapper mx-auto">
+                    <h3 class="text-white h1 mb-0 mt-2">\{{currentQuestionNo + 1}} / \{{questions.length}}</h3>
+                </div>
+                 <p class="text-primary text-center font-weight-bold">Question</p>
+            </div>
+        </div>
+        <div v-else>
+            <h3>No questions to show, please come back later..</h3>
+        </div>
     </div>
 </div>

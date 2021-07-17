@@ -1,0 +1,67 @@
+<script src="/js/attempt/quiz-result.js"></script>
+
+
+<div id="quiz-result-page">
+    <div v-if="showLoading" class="loading-bg p-4">
+    </div>
+
+    <div v-if="showScore"
+        class="quiz-main-bg row mx-0 w-100 justify-content-center align-items-center px-3 px-sm-3 px-md-5 py-3">
+        <div class="col-12 col-sm-12 col-md-7 mx-auto px-0">
+            <div class="col-12 col-sm-12 col-md-7 mx-auto">
+                <h4 class="text-center">\{{user.name}}</h4>
+                <h4 class="text-center">\{{user.church}}</h4>
+            </div>
+            <div class="score-wrapper mt-4 mx-auto d-flex justify-content-center align-items-center">
+                <img class="position-relative" src="/img/score-img.svg" width="280px" alt="">
+                <div class="position-absolute">
+                    <h1 class="font-weight-bold display-1 text-center">\{{myScore}}</h1>
+                    <h1 class="text-center">out of \{{totalScore}}</h1>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-7 mx-auto mt-3 pt-3 pt-sm-5 pt-md-5">
+                <button @click="viewResult()" class="btn  p-2 pt-3 option-card"
+                    style="background-color: #07c806; font-size: 1.5rem">View Responses</button>
+                <a @click="logout()">
+                    <p class="text-center text-primary mt-3" style="font-size: 1.5rem">Logout</p>
+                </a>
+            </div>
+        </div>
+        {{!--
+    </div> --}}
+</div>
+
+<div v-if="showQuiz" class="quiz-main-bg px-3 px-sm-3 px-md-5 py-5">
+    <div v-if="questions.length">
+        <div class="p-2 p-sm-3 p-md-5 text-center question-card">
+            <h5>\{{currentQuestion.question[language]}}</h5>
+        </div>
+        <div class="row mx-0 w-100 my-5">
+            <div class="col-12 col-sm-12 col-md-8">
+                <div class="radio-toolbar">
+                    <div v-for="(option, index) in currentQuestion.options[language]" class="w-100">
+                        <input type="radio" disabled="true" :id="'radio-question-' + currentQuestionNo + '-' + index"
+                            class="'radio-question-' + currentQuestionNo" name="'radio-question-' + currentQuestionNo"
+                            :value="option" @change="selectAnswer('radio-question-' + currentQuestionNo + '-' + index)"
+                            v-model="selectedOption">
+                        <label class="d-flex align-items-center justify-content-between w-full text-center"
+                            :for="'radio-question-' + currentQuestionNo + '-' + index">
+                            <h5 class="mb-0 mr-2 px-3 pb-2 pt-3 option-card"
+                                :class="{'correct-answer': currentQuestion.answer[language] === option,  'bg-danger': (option === currentQuestion.user_answer && currentQuestion.answer[language] !== selectedOption)}">
+                                \{{option}}</h5>
+                            <img :src="(index === 0 && '/img/option-A.svg') || (index === 1 && '/img/option-B.svg') || (index === 2 && '/img/option-C.svg')"
+                                style="width: 60px;" alt="">
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button @click="nextResponse" role="button" type="submit" class="bg-transparent outline-none btn bottom-next">
+            <img src="/img/next.svg" alt="" />
+        </button>
+    </div>
+    <div v-else>
+        <h3>No questions to show, please come back later..</h3>
+    </div>
+</div>
+</div>

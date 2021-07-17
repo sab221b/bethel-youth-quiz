@@ -3,6 +3,7 @@ const Participant = require("../models").Participant;
 module.exports = {
   list(req, res) {
     return Participant.findAll({
+      where: req.query,
       include: [],
       order: [["createdAt", "DESC"]],
     })
@@ -28,21 +29,34 @@ module.exports = {
       .catch((error) => res.status(400).send(error));
   },
 
-  add(req, res) {
-    return Participant.create({
-      name: req.body.name,
-      email: req.body.email,
-      preferred_language: req.body.preferred_language,
-      church: req.body.church,
-      phone: req.body.phone,
+  async add(req, res) {
+    var where = req.body.phone ? { phone: req.body.phone } : { email: req.body.email }
+    Participant.findOne({
+      where: where,
     })
-      .then((user) => res.status(201).send(user))
-      .catch((error) => res.status(400).send(error));
+      .then((user) => {
+        if(!user) {
+          return Participant.create({
+            name: req.body.name,
+            email: req.body.email,
+            preferred_language: req.body.preferred_language,
+            church: req.body.church,
+            phone: req.body.phone,
+          })
+            .then((user) => res.status(201).send(user))
+            .catch((error) => res.status(400).send(error));
+        } else {
+          res.status(200).send(user);
+        }
+      })
+      .catch((error) => {
+        res.status(400).send(error);
+      });
   },
 
   update(req, res) {
     return Participant.findByPk(req.params.id, {
-        include: [],
+      include: [],
     })
       .then((user) => {
         if (!user) {
