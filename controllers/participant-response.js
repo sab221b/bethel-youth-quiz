@@ -5,10 +5,15 @@ module.exports = {
         console.log('res', res);
         return ParticipantResponse.findAll({
             where: req.query,
-            include: [],
-            order: [["createdAt", "DESC"]],
+            include: ["participant"],
+            order: [
+                ['my_score', 'DESC'],
+                // ['id', 'ASC'],
+            ]
         })
-            .then((userResp) => res.status(200).send(userResp))
+            .then((userResp) => {
+               return res.status(200).send(userResp);
+            })
             .catch((error) => {
                 res.status(400).send(error);
             });
@@ -35,8 +40,8 @@ module.exports = {
         const userResponses = await ParticipantResponse.findAll({
             where: req.query
         })
-        if(userResponses.length > 0) {
-           return res.status(406).send({message: "You have already attempted this questionnaire"})
+        if (userResponses.length > 0) {
+            return res.status(406).send({ message: "You have already attempted this questionnaire" })
         }
 
         const questions = req.body.responses;

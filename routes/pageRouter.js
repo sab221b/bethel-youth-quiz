@@ -33,7 +33,7 @@ router.get('/attempt/quiz/:quizID/:userID', function(req, res, next) {
   res.render('attempt/quiz-result', { title: 'Weekly Youth Meet - Quiz session' });
 });
 
-router.get('/attempt/quiz/leaderboard', function(req, res, next) {
+router.get('/quiz/:id/leaderboard', function(req, res, next) {
   res.render('attempt/leaderboard', { title: 'Weekly Youth Meet - Quiz session' });
 });
 
