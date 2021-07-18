@@ -139,13 +139,17 @@ function hookVuejs() {
                 })
                 .catch(function (err) {
                     showLoader(false);
+                    _self.showMessage(err.response.data.message);
+                    setTimeout(() => {
+                        window.location.href ='/attempt/quiz/end/' + _self.quizID + '/' + _self.user.id;
+                    }, 3000);
                 })
             },
 
-            showMessage: function (response) {
+            showMessage: function (message) {
                 $('#show_message').modal('show');
                 $('#show_message').on('shown.bs.modal', function (e) {
-                    $('#message_content').text(response.data.message);
+                    $('#message_content').text(message);
                 })
             }
         },

@@ -90,7 +90,6 @@ function hookVuejs() {
         }
         delete payload.phone_email;
         _self.payload = payload;
-        debugger;
         axios.post("/api/participant/", payload)
           .then(function (response) {
             console.log('user-created', response.data)

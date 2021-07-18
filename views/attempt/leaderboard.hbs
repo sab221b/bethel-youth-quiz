@@ -1,0 +1,29 @@
+<script src="/js/attempt/leaderboard.js"></script>
+
+<div id="user-details-page" class="quiz-main-bg p-3">
+  <div class="col-12 col-sm-10 col-md-5 mx-auto d-flex flex-column align-items-center justify-content-center h-100">
+    <div>
+      <h3 class="text-center font-weight-bold">Leader board</h3>
+    </div>
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Church</th>
+      <th scope="col">Score</th>
+      <th scope="col">Time-Taken</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-for="(item, index) in responses">
+      <th scope="row">\{{index + 1}}</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div>
