@@ -59,7 +59,7 @@ function hookVuejs() {
                         _self.showScore = true;
                         var start_time = new Date(response.data[0].start_time);
                         var end_time = new Date(response.data[0].end_time);
-                        _self.timeTook = (end_time - start_time)/1000;
+                        _self.timeTook = (new Date(end_time).getTime() - new Date(start_time).getTime())/100
 
                     }).catch(function (err) {
                         console.log('error at fetching questions')

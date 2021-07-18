@@ -23,8 +23,8 @@
                     </tbody>
                 </table>
             </div>
-            <div class="row mx-0 w-100 mt-5">
-                <div class="col-12 col-sm-12 col-md-8 mb-4 px-0">
+            <div class="row mx-0 w-100">
+                <div class="col-12 col-sm-12 col-md-8 px-0">
                     <div class="radio-toolbar">
                         <div v-for="(option, index) in currentQuestion.options[language]" class="w-100">
                             <input type="radio" :id="'radio-question-' + currentQuestionNo + '-' + index"
@@ -43,14 +43,14 @@
                 </div>
                 <div class="col-12 col-sm-12 col-md-4 d-flex justify-content-between align-items-center">
                     <div class="d-block d-sm-block d-md-none">
-                        <div class="timer-wrapper" style="width: 100px; height: 100px;">
-                            <h3 class="text-white h1 mb-0 mt-2">\{{currentQuestionNo + 1}}/\{{questions.length}}</h3>
+                        <div class="timer-wrapper" style="width: 80px; height: 60px; border-radius: 15px !important;">
+                            <h5 class="text-white h3 mb-0 mt-2">\{{currentQuestionNo + 1}}/\{{questions.length}}</h5>
                         </div>
                         <p class="text-primary text-center font-weight-bold">Question</p>
                     </div>
                     <div class="mx-md-auto">
-                        <div class="timer-wrapper">
-                            <h3 class="text-white display-1 mb-0 mt-2">\{{getCurrentTimer}}</h3>
+                        <div class="timer-wrapper" style="width: 100px; height: 100px;">
+                            <h1 class="text-white mb-0 mt-2" style="font-size: 3rem !important;">\{{getCurrentTimer}}</h1>
                         </div>
                         <p class="text-primary text-center font-weight-bold">Time left</p>
                     </div>
