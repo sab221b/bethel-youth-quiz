@@ -260,6 +260,15 @@ button#search_icon {
     // background-size: 100%;
     background-position: center;
   }
+  .thank-you-wrapper {
+    background-image: url(/img/thank-you-wrapper.svg);
+    background-repeat: no-repeat;
+    // width: 411px;
+    margin: 0 !important;
+    background-size:cover;
+    background-position: center;
+    padding: 2rem 0;
+  }
 }
 
 @media (min-width: 576px) {
@@ -282,6 +291,9 @@ button#search_icon {
     margin: 0 !important;
     background-size: cover;
     background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   .pre-start-bg {
     background-image: url(/img/pre-start-bg.svg);
@@ -300,6 +312,15 @@ button#search_icon {
     margin: 0 !important;
     background-size: 100%;
     background-position: center;
+  }
+  .thank-you-wrapper {
+    background-image: url(/img/thank-you-wrapper.svg);
+    background-repeat: no-repeat;
+    // width: 411px;
+    margin: 0 !important;
+    background-size:contain;
+    background-position: center;
+    padding: 2rem 0;
   }
 }
 
@@ -380,16 +401,6 @@ select option[disabled] {
   font-weight: bold;
   --tw-text-opacity: 1;
   color: rgba(255, 255, 255, var(--tw-text-opacity));
-}
-
-.thank-you-wrapper {
-  background-image: url(/img/thank-you-wrapper.svg);
-  background-repeat: no-repeat;
-  // width: 411px;
-  margin: 0 !important;
-  background-size:cover;
-  background-position: center;
-  padding: 2rem 0;
 }
 
 .score-wrapper {
