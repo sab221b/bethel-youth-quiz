@@ -13,7 +13,7 @@ function hookVuejs() {
             questions: [],
             currentQuestion: null,
             language: '',
-            currentTimer: 19,
+            currentTimer: 24,
             currentQuestionNo: 0,
             selectedOption: '',
             activeTimer: 'quiz_timer',
@@ -88,8 +88,8 @@ function hookVuejs() {
                 _self.start_time = new Date().toISOString();
                 _self.activeTimer = setInterval(function () {
                     if (startSec < 20) {
-                        console.log('seconds-left', 19 - startSec);
-                        _self.currentTimer = 19 - startSec;
+                        console.log('seconds-left', 24 - startSec);
+                        _self.currentTimer = 24 - startSec;
                         startSec++;
                         _self.$forceUpdate();
                     } else {
