@@ -35,7 +35,7 @@
 <div v-if="showQuiz" class="quiz-main-bg px-3 px-sm-3 px-md-5 justify-content-start">
     <div v-if="questions.length">
         <div class="p-2 p-sm-3 p-md-5 mt-4 text-center question-card">
-            <h6>\{{currentQuestion.question[language]}}</h6>
+            <h5 class="font-weight-bold">\{{currentQuestion.question[language]}}</h5>
         </div>
         <table v-if="currentQuestion.list && currentQuestion.list.length" class="table table-striped">
             <tbody>
