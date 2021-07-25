@@ -61,6 +61,11 @@ module.exports = {
                 }
             }, 0);
         }
+
+        const start_time = new Date(req.body.start_time).getTime();
+        const end_time = new Date(req.body.end_time).getTime();
+        const timeTaken =  (end_time - start_time)/1000;
+
         return ParticipantResponse.create({
             participant_id: req.body.participant_id,
             questionnaire_id: req.body.questionnaire_id,
@@ -70,6 +75,7 @@ module.exports = {
             responses: JSON.stringify(req.body.responses),
             total_score: total_score,
             my_score: my_score,
+            time_taken: timeTaken,
         })
             .then((userResp) => res.status(201).send(userResp))
             .catch((error) => res.status(400).send(error));

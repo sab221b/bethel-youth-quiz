@@ -28,7 +28,8 @@ module.exports = (sequelize, DataTypes) => {
     language: DataTypes.STRING,
     responses: DataTypes.TEXT,
     total_score: DataTypes.INTEGER,
-    my_score: DataTypes.INTEGER
+    my_score: DataTypes.INTEGER,
+    time_taken: DataTypes.DECIMAL
   }, {
     sequelize,
     modelName: 'ParticipantResponse',

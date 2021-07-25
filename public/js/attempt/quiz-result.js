@@ -57,9 +57,7 @@ function hookVuejs() {
                         _self.showLoading = false;
                         _self.showQuiz = false;
                         _self.showScore = true;
-                        var start_time = new Date(response.data[0].start_time);
-                        var end_time = new Date(response.data[0].end_time);
-                        _self.timeTook = (new Date(end_time).getTime() - new Date(start_time).getTime())/100
+                        _self.timeTook = response.data[0].time_taken
 
                     }).catch(function (err) {
                         console.log('error at fetching questions')
