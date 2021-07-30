@@ -64,7 +64,7 @@ module.exports = {
 
         const start_time = new Date(req.body.start_time).getTime();
         const end_time = new Date(req.body.end_time).getTime();
-        const timeTaken =  (end_time - start_time)/1000;
+        const timeTaken =  (end_time - start_time)/100;
 
         return ParticipantResponse.create({
             participant_id: req.body.participant_id,
