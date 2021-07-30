@@ -93,4 +93,28 @@ module.exports = {
       })
       .catch((error) => res.status(400).send(error));
   },
+
+  login(req, res) {
+    return Participant.findOne({
+      where: req.query
+    })
+      .then((participant) => {
+        if (!participant) {
+          return res.status(404).send({
+            message: "User Not Found",
+          });
+        } else {
+          return participant
+          .update({
+            preferred_language: req.body.preferred_language,
+          })
+          .then((success) =>
+           res.status(200).send(success))
+          .catch((error) => 
+          res.status(400).send(error));
+        }
+      })
+      .catch((error) => 
+      res.status(400).send(error));
+  },
 };

@@ -86,12 +86,12 @@ function hookVuejs() {
           }
           delete payload.phone_email;
           _self.payload = payload;
-          axios.get("/api/participant" + '?' + Object.keys(_self.payload)[1] + '=' + Object.values(_self.payload)[1], payload)
+          axios.put("/api/participant/login" + '?' + Object.keys(_self.payload)[1] + '=' + Object.values(_self.payload)[1], payload)
             .then(function (response) {
              showLoader(false);
-             if(response.data.length) {
+             if(response.data) {
                 console.log('user-login-success', response.data)
-                var user = response.data[0];
+                var user = response.data;
                 localStorage.setItem('userName', user.name);
                 localStorage.setItem('userID', user.id);
                 localStorage.setItem('church', user.church);
@@ -104,21 +104,25 @@ function hookVuejs() {
                 var quizID = Number(localStorage.getItem('quizID'));
                 window.location.href = '/attempt/quiz/' + quizID;
              } else {
-                 _self.formError.phone_email = "User not found";
-                 _self.$forceUpdate();
+              _self.formError.phone_email = "User not found";
+              _self.$forceUpdate();
+              _self.showMessage(err.response.data.message)
                  return;
              }
             })
-            .catch(function (response) {
+            .catch(function (err) {
               showLoader(false);
-              console.log('error occured creating user', response)
+              _self.formError.phone_email = "User not found";
+              _self.$forceUpdate();
+              _self.showMessage(err.response.data.message)
+              console.log('error occured creating user', err)
             });
         },
   
-        showMessage: function (response) {
+        showMessage: function (message) {
           $('#show_message').modal('show');
           $('#show_message').on('shown.bs.modal', function (e) {
-              $('#message_content').text(response.data.message);
+              $('#message_content').text(message);
           })
       }
       },

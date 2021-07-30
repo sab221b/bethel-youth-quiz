@@ -11,6 +11,7 @@ router.get("/", function (req, res, next) {
 });
 
 /* Participant Router */
+router.put("/participant/login", participantController.login);
 router.get("/participant", participantController.list);
 router.get("/participant/:id", participantController.getById);
 router.post("/participant", participantController.add);
