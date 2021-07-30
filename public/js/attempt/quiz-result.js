@@ -93,7 +93,7 @@ function hookVuejs() {
 
             logout: function() {
                 localStorage.clear();
-                localStorage.setItem("quizID", window.location.pathname.split("/attempt/quiz/result/")[1]);
+                localStorage.setItem("quizID", window.location.pathname.split("/attempt/quiz/result/1/")[1]);
                 window.location.href = '/user/signup';
             },
             showMessage: function (response) {

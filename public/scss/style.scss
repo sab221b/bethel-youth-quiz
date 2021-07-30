@@ -240,7 +240,7 @@ button#search_icon {
     background-position: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
   }
   .pre-start-bg {
     background-image: url(/img/pre-start-bg.svg);
@@ -293,7 +293,7 @@ button#search_icon {
     background-position: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
   }
   .pre-start-bg {
     background-image: url(/img/pre-start-bg.svg);
@@ -342,11 +342,29 @@ button#search_icon {
   border: 1px solid #000 !important;
 }
 
+.bottom-0 {
+  bottom: 0 !important;
+}
+
+.left-0 {
+  left: 0 !important;
+}
+
+.right-0 {
+  right: 0 !important;
+}
+
 .bottom-next {
   position: fixed;
   right: 25px;
   bottom: 25px;
 }
+
+// .bottom-quiz-no {
+//   position: fixed;
+//   left: 25px;
+//   bottom: 25px;
+// }
 
 button[type="submit"] {
   outline: none !important;
@@ -411,7 +429,7 @@ select option[disabled] {
   margin: 0 !important;
   background-size:cover;
   background-position: center;
-  padding: 2rem 0;
+  padding: 4rem 0;
 }
 
 .correct-answer {

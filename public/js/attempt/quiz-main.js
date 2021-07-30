@@ -87,7 +87,7 @@ function hookVuejs() {
                 var startSec = 0;
                 _self.start_time = new Date().toISOString();
                 _self.activeTimer = setInterval(function () {
-                    if (startSec < 20) {
+                    if (startSec < 25) {
                         console.log('seconds-left', 24 - startSec);
                         _self.currentTimer = 24 - startSec;
                         startSec++;

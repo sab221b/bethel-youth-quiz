@@ -41,7 +41,7 @@ module.exports = {
             where: req.query
         })
         if (userResponses.length > 0) {
-            return res.status(406).send({ message: "You have already attempted this questionnaire" })
+            return res.status(406).send({ message: "You have already attempted this quiz, view your previous attempt" })
         }
 
         const questions = req.body.responses;
