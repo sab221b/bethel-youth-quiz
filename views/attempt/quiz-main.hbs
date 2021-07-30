@@ -43,10 +43,10 @@
                 </div>
                 <div class="col-12 col-sm-12 col-md-4 d-flex justify-content-between align-items-center">
                     <div class="d-block d-sm-block d-md-none">
-                        <div class="timer-wrapper" style="width: 80px; height: 60px; border-radius: 15px !important;">
+                        <div class="timer-wrapper" style="width: 100px; height: 80px; border-radius: 15px !important;">
                             <h5 class="text-white h3 mb-0 mt-2">\{{currentQuestionNo + 1}}/\{{questions.length}}</h5>
                         </div>
-                        <p class="text-primary text-center font-weight-bold">Question</p>
+                        <p class="text-primary mt-1 text-center font-weight-bold">\{{language === 'english' ? 'Question' : 'வினா என்'}}</p>
                     </div>
                     <div class="mx-md-auto">
                         <div class="timer-wrapper" style="width: 100px; height: 100px;">
@@ -60,7 +60,7 @@
                 <div class="timer-wrapper mx-auto" style="width: 100px; height: 80px; border-radius: 15px !important;">
                     <h3 class="text-white h3 mb-0 mt-2">\{{currentQuestionNo + 1}} / \{{questions.length}}</h3>
                 </div>
-                <p class="text-primary text-center font-weight-bold">Question</p>
+                <p class="text-primary mt-1 text-center font-weight-bold">\{{language === 'english' ? 'Question' : 'வினா என்'}}</p>
             </div>
         </div>
         <div v-else>

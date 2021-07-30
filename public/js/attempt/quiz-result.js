@@ -72,6 +72,7 @@ function hookVuejs() {
             },
 
             viewResponse: function () {
+                this.currentQuestionNo = 0;
                 var questions = this.questions;
                 this.currentQuestion = questions[this.currentQuestionNo];
                 this.selectedOption = questions[this.currentQuestionNo].user_answer

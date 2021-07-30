@@ -229,7 +229,7 @@ button#search_icon {
     background-position: center;
   }
   .quiz-main-bg {
-    background-image: url(/img/quiz-main-img.svg);
+    background-image: url(/img/user-details-bg.svg);
     background-repeat: no-repeat;
     min-height: 100vh !important;
     min-width: 100vw;
@@ -282,7 +282,7 @@ button#search_icon {
     background-position: center;
   }
   .quiz-main-bg {
-    background-image: url(/img/quiz-main-img.svg);
+    background-image: url(/img/user-details-bg.svg);
     background-repeat: no-repeat;
     min-height: 100vh !important;
     min-width: 100vw;
@@ -427,4 +427,35 @@ select option[disabled] {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #000 !important;
+  opacity: 1; /* Firefox */
+}
+
+input::-webkit-input-placeholder {
+  /* Edge */
+  color: #000;
+}
+
+input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #000;
+}
+input::placeholder {
+  color: #000;
+}
+textarea::-webkit-input-placeholder {
+  /* Edge */
+  color: #000;
+}
+
+textarea:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #000;
+}
+textarea::placeholder {
+  color: #000;
 }

@@ -64,6 +64,14 @@
                 </div>
             </div>
         </div>
+        <div class="col-12 col-sm-12 col-md-4 d-flex justify-content-between align-items-center">
+            <div class="text-center">
+                <div class="timer-wrapper" style="width: 100px; height: 80px; border-radius: 15px !important;">
+                    <h5 class="text-white h3 mb-0 mt-2">\{{currentQuestionNo + 1}}/\{{questions.length}}</h5>
+                </div>
+                <p class="text-primary mt-1 text-center font-weight-bold">\{{language === 'english' ? 'Question' : 'வினா என்'}}</p>
+            </div>
+        </div>
         <button @click="nextResponse" role="button" type="submit" class="bg-transparent outline-none btn bottom-next">
             <img src="/img/next.svg" alt="" />
         </button>
