@@ -15,7 +15,7 @@
     <table class="table">
       <thead class="thead-light">
         <tr>
-          <th class="white-space-nowrap" scope="col">S.NO</th>
+          <th class="white-space-nowrap" scope="col">Quiz ID</th>
           <th class="white-space-nowrap" scope="col">Topic</th>
           <th class="text-center white-space-nowrap" scope="col">Total Questions</th>
           <th class="text-center white-space-nowrap" scope="col">Total Score</th>
@@ -23,7 +23,7 @@
             class="text-center white-space-nowrap"
             scope="col"
           >Auto-present</th>
-          <th class="white-space-nowrap" scope="col">Created at</th>
+          <th class="text-center white-space-nowrap" scope="col">Created at</th>
         </tr>
       </thead>
       <tbody>
@@ -32,7 +32,7 @@
           v-for="(item, index) in listData"
           @click="viewQuestionnaire(item.id)"
         >
-          <th scope="row">\{{index + 1}}</th>
+          <th scope="row">\{{item.id}}</th>
           <td style="min-width: 150px;">\{{item.topic}}</td>
           <td class="text-center">\{{item.questions.length}}</td>
           <td class="text-center">\{{item.total_score}}</td>

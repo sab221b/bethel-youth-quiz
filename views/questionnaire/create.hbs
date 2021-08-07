@@ -1,0 +1,111 @@
+<script src="/js/questionnaire/create.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<div class="main-header bg-secondary">
+    <h1 class="h6 d-block d-sm-block d-md-none text-white mb-0 pl-4 w-100">{{title}}</h1>
+    <h3 class="h3 d-none d-sm-none d-md-block text-white mb-0 pl-4 w-100">{{title}}</h3>
+</div>
+<div id="vue-app-create-questionnaire" class="col-12 col-sm-12 col-md-7 mx-auto px-2 px-sm-3 px-md-4 py-5 mt-5">
+    <h3 class="mb-4 w-100 text-center">Create Quiz</h3>
+    <div class="card border-dark">
+        <div class="card-header bg-dark text-white">
+            Title and Description
+        </div>
+        <div class="card-body">
+            {{!-- <h5 class="card-title">Special title treatment</h5> --}}
+            <form novalidate="true" @submit="createQuestionnare">
+                <div class="form-group">
+                    <label for="topic">Topic</label>
+                    <input type="email" class="form-control" id="topic" v-model="questionnaire.topic"
+                        placeholder="Enter a title for the quiz">
+                    <small v-if="formError && formError.topic"
+                        class="form-text text-danger pl-1">\{{formError.topic}}</small>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea type="text" class="form-control" id="description" v-model="questionnaire.description" rows="3"
+                        placeholder="Give a description for the quiz"></textarea>
+                    <small v-if="formError && formError.description"
+                        class="form-text text-danger pl-1">\{{formError.description}}</small>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" checked="true" v-model="questionnaire.auto_presentation" class="form-check-input"
+                        id="auto_presentation">
+                    <label class="form-check-label" for="auto_presentation">Auto-present</label>
+                </div>
+                <div v-for="(item, index) in questionnaire.questions"
+                    class="border rounded border-secondary mb-3">
+                    <div class="card-header bg-dark text-white">
+                        Question number: \{{index + 1}}
+                    </div>
+                    <div class="form-group px-2 px-sm-2 px-md-3">
+                        <label class="my-2">Question: </label>
+                        <input type="text" class="form-control" :id="'english-question-' + index"
+                            v-model="item.question.english" placeholder="Question in english">
+                        <small
+                            v-if="formError && formError?.questions?.length && formError?.questions[index]?.question?.english"
+                            class="form-text text-danger pl-1">\{{formError?.questions?.length &&
+                            formError?.questions[index]?.question?.english}}</small>
+                        <input type="text" class="form-control mt-3" :id="'tamil-question-' + index"
+                            v-model="item.question.tamil" placeholder="Question in tamil">
+                        <small
+                            v-if="formError && formError?.questions?.length && formError?.questions[index]?.question?.tamil"
+                            class="form-text text-danger pl-1">\{{formError?.questions?.length &&
+                            formError?.questions[index]?.question?.tamil}}</small>
+
+                        <label class="my-2">Options: </label>
+                        <div class="d-flex">
+                            <div class="col-6 pl-0">
+                                <div v-for="(option, idx) in item.options.english">
+                                    <input type="text" class="form-control mb-3" :id="'english-option-' + idx"
+                                        v-model="option" placeholder="Option in english">
+                                </div>
+                            </div>
+                            <div class="col-6 px-0">
+                                <div v-for="(option, idx) in item.options.tamil">
+                                    <input type="text" class="form-control mb-3" :id="'tamil-option-' + idx"
+                                        v-model="option" placeholder="Option in tamil">
+                                </div>
+                            </div>
+                        </div>
+
+                        <label class="my-2">Answer: </label>
+                        <input type="text" class="form-control" :id="'english-answer-' + index"
+                            v-model="item.answer.english" placeholder="Answer in english">
+                        <small
+                            v-if="formError && formError?.questions?.length && formError?.questions[index]?.answer?.english"
+                            class="form-text text-danger pl-1">\{{formError?.questions?.length &&
+                            formError?.questions[index]?.answer?.english}}</small>
+                        <input type="text" class="form-control mt-3" :id="'tamil-answer-' + index"
+                            v-model="item.answer.tamil" placeholder="Answer in tamil">
+                        <small
+                            v-if="formError && formError?.questions?.length && formError?.questions[index]?.answer?.tamil"
+                            class="form-text text-danger pl-1">\{{formError?.questions?.length &&
+                            formError?.questions[index]?.answer?.tamil}}</small>
+
+                        <label class="my-2">Score: </label>
+                        <input type="number" class="form-control mb-3" :id="'score-' + index" v-model="item.score"
+                            placeholder="Marks for right answer">
+                    </div>
+                </div>
+                <div role="button" @click="addQuestion"
+                    class="border border-secondary bg-secondary cursor-pointer px-4 py-3 text-center"
+                    style="border-radius: 10px;">
+                    <h5 class="card-title text-center text-white font-weight-bold">Add a Question</h5>
+                    <i aria-hidden="true" class="fa fa-plus fa-2x w-100 text-center text-white"></i>
+                </div>
+                <small v-if="!questionnaire.questions.length"
+                        class="form-text text-danger pl-1">Questions required</small>
+                <div class="form-group mt-3">
+                    <label for="closing_text">Closing text</label>
+                    <textarea type="text" class="form-control" id="closing_text" v-model="questionnaire.closing_text" rows="3"
+                        placeholder="Give a closing_text for the quiz"></textarea>
+                    <small v-if="formError && formError.closing_text"
+                        class="form-text text-danger pl-1">\{{formError.closing_text}}</small>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
