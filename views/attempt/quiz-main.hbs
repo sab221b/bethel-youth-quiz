@@ -10,7 +10,7 @@
     </div>
 
     <div v-if="showQuiz" class="quiz-main-bg px-3 px-sm-3 px-md-5">
-        <div v-if="questions.length" class="pt-md-4">
+        <div v-if="questions.length" class="col-12 col-sm-8 col-md-7 px-0 mx-auto pt-md-4">
             <div class="p-2 p-sm-3 p-md-5 mt-4 mt-sm-4 mt-md-0 text-center question-card">
                 <h5 class="font-weight-bold">\{{currentQuestion.question[language]}}</h5>
             </div>
@@ -24,7 +24,7 @@
                 </table>
             </div>
             <div class="row mx-0 w-100">
-                <div class="col-12 col-sm-12 col-md-8 px-0">
+                <div class="w-100 px-0">
                     <div class="radio-toolbar">
                         <div v-for="(option, index) in currentQuestion.options[language]" class="w-100">
                             <input type="radio" :id="'radio-question-' + currentQuestionNo + '-' + index"
@@ -41,30 +41,49 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-12 col-md-4 d-flex justify-content-between align-items-center">
-                    <div class="d-block d-sm-block d-md-none">
+                <div
+                    class="d-none d-sm-none d-md-flex justify-content-between align-items-end position-fixed left-0 right-0 bottom-0 px-3">
+                    <div>
                         <div class="timer-wrapper" style="width: 100px; height: 80px; border-radius: 15px !important;">
                             <h5 class="text-white h3 mb-0 mt-2">\{{currentQuestionNo + 1}}/\{{questions.length}}</h5>
                         </div>
-                        <p class="text-primary mt-1 text-center font-weight-bold">\{{language === 'english' ? 'Question' : 'வினா என்'}}</p>
+                        <p class="text-dark mt-1 text-center font-weight-bold">
+                            \{{language === 'english' ? 'Question' : 'வினா என்'}}</p>
                     </div>
-                    <div class="mx-md-auto">
+                    <div>
                         <div class="timer-wrapper" style="width: 100px; height: 100px;">
-                            <h1 class="text-white mb-0 mt-2" style="font-size: 3rem !important;">\{{getCurrentTimer}}</h1>
+                            <h1 class="text-white mb-0 mt-2" style="font-size: 3rem !important;">\{{getCurrentTimer}}
+                            </h1>
                         </div>
-                        <p class="text-primary text-center font-weight-bold">Time left</p>
+                        <p class="text-dark text-center font-weight-bold">Time left</p>
                     </div>
                 </div>
             </div>
-            <div class="w-100 mt-2 mx-auto d-none d-sm-none d-md-block">
+            {{!-- <div class="w-100 mt-2 mx-auto d-none d-sm-none d-md-block">
                 <div class="timer-wrapper mx-auto" style="width: 100px; height: 80px; border-radius: 15px !important;">
                     <h3 class="text-white h3 mb-0 mt-2">\{{currentQuestionNo + 1}} / \{{questions.length}}</h3>
                 </div>
-                <p class="text-primary mt-1 text-center font-weight-bold">\{{language === 'english' ? 'Question' : 'வினா என்'}}</p>
-            </div>
+                <p class="text-dark mt-1 text-center font-weight-bold">\{{language === 'english' ? 'Question' : 'வினா
+                    என்'}}</p>
+            </div> --}}
         </div>
         <div v-else>
             <h3>No questions to show, please come back later..</h3>
+        </div>
+        <div class="d-flex d-sm-flex d-md-none justify-content-between align-items-end">
+            <div>
+                <div class="timer-wrapper" style="width: 100px; height: 80px; border-radius: 15px !important;">
+                    <h5 class="text-white h3 mb-0 mt-2">\{{currentQuestionNo + 1}}/\{{questions.length}}</h5>
+                </div>
+                <p class="text-dark mt-1 text-center font-weight-bold">
+                    \{{language === 'english' ? 'Question' : 'வினா என்'}}</p>
+            </div>
+            <div>
+                <div class="timer-wrapper" style="width: 100px; height: 100px;">
+                    <h1 class="text-white mb-0 mt-2" style="font-size: 3rem !important;">\{{getCurrentTimer}}</h1>
+                </div>
+                <p class="text-dark text-center font-weight-bold">Time left</p>
+            </div>
         </div>
     </div>
 </div>

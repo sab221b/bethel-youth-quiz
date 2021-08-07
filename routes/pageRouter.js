@@ -37,16 +37,12 @@ router.get('/quiz/:id/leaderboard', function(req, res, next) {
   res.render('attempt/leaderboard', { title: 'Weekly Youth Meet - Quiz session' });
 });
 
-router.get('/questionnaire', function(req, res, next) {
+router.get('/questionnaire/list', function(req, res, next) {
   res.render('questionnaire/list', { title: 'Weekly Youth Meet - Quiz session' });
 });
 
-router.get('/questionnaire', function(req, res, next) {
-  res.render('questionnaire/list', { title: 'Weekly Youth Meet - Quiz session' });
-});
-
-router.get('/questionnaire/:id', function(req, res, next) {
-  res.render('questionnaire/view', { title: 'Weekly Youth Meet - Quiz session' });
+router.get('/questionnaire/create', function(req, res, next) {
+  res.render('questionnaire/create', { title: 'Weekly Youth Meet - Quiz session' });
 });
 
 module.exports = router;
