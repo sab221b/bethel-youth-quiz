@@ -35,7 +35,7 @@ module.exports = {
       where: where,
     })
       .then((user) => {
-        if(!user) {
+        if (!user) {
           return Participant.create({
             name: req.body.name,
             email: req.body.email,
@@ -46,7 +46,17 @@ module.exports = {
             .then((user) => res.status(201).send(user))
             .catch((error) => res.status(400).send(error));
         } else {
-          res.status(200).send(user);
+          return user.update({
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password,
+            preferred_language: req.body.preferred_language,
+            church: req.body.church,
+          })
+            .then((success) =>
+              res.status(200).send(success))
+            .catch((error) =>
+              res.status(400).send(error));
         }
       })
       .catch((error) => {
@@ -105,16 +115,16 @@ module.exports = {
           });
         } else {
           return participant
-          .update({
-            preferred_language: req.body.preferred_language,
-          })
-          .then((success) =>
-           res.status(200).send(success))
-          .catch((error) => 
-          res.status(400).send(error));
+            .update({
+              preferred_language: req.body.preferred_language,
+            })
+            .then((success) =>
+              res.status(200).send(success))
+            .catch((error) =>
+              res.status(400).send(error));
         }
       })
-      .catch((error) => 
-      res.status(400).send(error));
+      .catch((error) =>
+        res.status(400).send(error));
   },
 };
