@@ -2,9 +2,10 @@
     $(document).ready(function () {
         var quizID = Number(window.location.pathname.split('/quiz/')[1]);
         localStorage.setItem('quizID', quizID);
-        setTimeout(() => {
+
+        function startQuiz() {
             checkUser();
-        }, 10000);
+        }
     });
 
     function checkUser() {
@@ -25,4 +26,7 @@
     }
 </script>
 <div class="quiz-home-bg">
+    <div class="text-center w-100 position-absolute" style="top: 70px;">
+        <img onclick="checkUser()" class="cursor-pointer rounded-circle" src="/img/quiz-button.svg" alt="" />
+    </div>
 </div>

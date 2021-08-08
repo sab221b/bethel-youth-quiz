@@ -225,7 +225,7 @@ button#search_icon {
     height: 100vh !important;
     width: 100vw;
     margin: 0 !important;
-    background-size: 100%;
+    background-size: cover;
     background-position: center;
   }
   .quiz-main-bg {
@@ -273,7 +273,7 @@ button#search_icon {
 
 @media (min-width: 576px) {
   .quiz-home-bg {
-    background-image: url(/img/quiz-home-web.jpg);
+    background-image: url(/img/quiz-home-web.svg);
     background-repeat: no-repeat;
     height: 100vh !important;
     width: 100vw;
