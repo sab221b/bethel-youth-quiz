@@ -1,0 +1,30 @@
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #8e8e8e !important;
+    opacity: 1; /* Firefox */
+  }
+  
+  input::-webkit-input-placeholder {
+    /* Edge */
+    color: #8e8e8e;
+  }
+  
+  input:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #8e8e8e;
+  }
+  input::placeholder {
+    color: #8e8e8e;
+  }
+  textarea::-webkit-input-placeholder {
+    /* Edge */
+    color: #8e8e8e;
+  }
+  
+  textarea:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #8e8e8e;
+  }
+  textarea::placeholder {
+    color: #8e8e8e;
+  }
