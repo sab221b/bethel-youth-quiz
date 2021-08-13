@@ -17,8 +17,8 @@ function hookVuejs() {
             currentQuestionNo: 0,
             selectedOption: '',
             activeTimer: 'quiz_timer',
-            start_time: new Date(),
-            end_time: new Date()
+            start_time: "",
+            end_time: ""
         },
         computed: {
             getCurrentTimer: function() {
@@ -79,13 +79,13 @@ function hookVuejs() {
             startQuiz: function () {
                 var questions = this.questions;
                 this.currentQuestion = questions[this.currentQuestionNo];
+                this.start_time = new Date().toISOString();
                 this.startTimer();
             },
 
             startTimer: function () {
                 var _self = this;
                 var startSec = 0;
-                _self.start_time = new Date().toISOString();
                 _self.activeTimer = setInterval(function () {
                     if (startSec < 25) {
                         console.log('seconds-left', 24 - startSec);

@@ -1,4 +1,5 @@
 const ParticipantResponse = require("../models").ParticipantResponse;
+var moment = require('moment');
 
 module.exports = {
     list(req, res) {
@@ -62,9 +63,9 @@ module.exports = {
             }, 0);
         }
 
-        const start_time = new Date(req.body.start_time).getTime();
-        const end_time = new Date(req.body.end_time).getTime();
-        const timeTaken =  (end_time - start_time)/1000;
+        const start_time = moment(req.body.start_time);
+        const end_time = moment(req.body.end_time);
+        const timeTaken =  end_time.diff(start_time, "milliseconds")/1000;
 
         return ParticipantResponse.create({
             participant_id: req.body.participant_id,
@@ -80,31 +81,6 @@ module.exports = {
             .then((userResp) => res.status(201).send(userResp))
             .catch((error) => res.status(400).send(error));
     },
-
-    //   update(req, res) {
-    //     return ParticipantResponse.findByPk(req.params.id, {
-    //       include: [],
-    //     })
-    //       .then((questionnaire) => {
-    //         if (!questionnaire) {
-    //           return res.status(404).send({
-    //             message: "User Not Found",
-    //           });
-    //         }
-    //         return questionnaire
-    //           .update({
-    //             topic: req.body.topic,
-    //             description: req.body.description,
-    //             questions: req.body.questions,
-    //             total_score: req.body.total_score,
-    //             closing_text: req.body.closing_text,
-    //             auto_presentation: req.body.auto_presentation || true,
-    //           })
-    //           .then(() => res.status(200).send(questionnaire))
-    //           .catch((error) => res.status(400).send(error));
-    //       })
-    //       .catch((error) => res.status(400).send(error));
-    //   },
 
     delete(req, res) {
         return ParticipantResponse.findByPk(req.params.id)
