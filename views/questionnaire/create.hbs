@@ -58,13 +58,13 @@
                             <div class="col-6 pl-0">
                                 <div v-for="(option, idx) in item.options.english">
                                     <input type="text" class="form-control mb-3" :id="'english-option-' + idx"
-                                        v-model="option" placeholder="Option in english">
+                                        v-model="item.options.english[idx]" placeholder="Option in english">
                                 </div>
                             </div>
                             <div class="col-6 px-0">
                                 <div v-for="(option, idx) in item.options.tamil">
                                     <input type="text" class="form-control mb-3" :id="'tamil-option-' + idx"
-                                        v-model="option" placeholder="Option in tamil">
+                                        v-model="item.options.tamil[idx]" placeholder="Option in tamil">
                                 </div>
                             </div>
                         </div>
