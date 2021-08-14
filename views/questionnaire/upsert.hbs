@@ -1,11 +1,10 @@
- <link rel='stylesheet' href='/css/create.css' />
-<script src="/js/questionnaire/create.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+ <link rel='stylesheet' href='/css/upsert.css' />
+<script src="/js/questionnaire/upsert.js"></script>
 <div class="main-header bg-secondary">
     <h1 class="h6 d-block d-sm-block d-md-none text-white mb-0 pl-4 w-100">{{title}}</h1>
     <h3 class="h3 d-none d-sm-none d-md-block text-white mb-0 pl-4 w-100">{{title}}</h3>
 </div>
-<div id="vue-app-create-questionnaire" class="col-12 col-sm-12 col-md-7 mx-auto px-2 px-sm-3 px-md-4 py-5 mt-5">
+<div id="vue-app-upsert-questionnaire" class="col-12 col-sm-12 col-md-7 mx-auto px-2 px-sm-3 px-md-4 py-5 mt-5">
     <h3 class="mb-4 w-100 text-center">Create Quiz</h3>
     <div class="card border-dark">
         <div class="card-header bg-dark text-white">
@@ -13,7 +12,7 @@
         </div>
         <div class="card-body">
             {{!-- <h5 class="card-title">Special title treatment</h5> --}}
-            <form novalidate="true" @submit="createQuestionnare">
+            <form novalidate="true" @submit="submitQuestionnare">
                 <div class="form-group">
                     <label for="topic">Topic</label>
                     <input type="email" class="form-control" id="topic" v-model="questionnaire.topic"

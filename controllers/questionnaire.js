@@ -62,7 +62,7 @@ module.exports = {
           .update({
             topic: req.body.topic,
             description: req.body.description,
-            questions: req.body.questions,
+            questions: JSON.stringify(req.body.questions),
             total_score: req.body.total_score,
             closing_text: req.body.closing_text,
             auto_presentation: req.body.auto_presentation || true,
