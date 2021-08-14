@@ -42,7 +42,11 @@ router.get('/questionnaire/list', function(req, res, next) {
 });
 
 router.get('/questionnaire/create', function(req, res, next) {
-  res.render('questionnaire/create', { title: 'Weekly Youth Meet - Quiz session' });
+  res.render('questionnaire/upsert', { title: 'Weekly Youth Meet - Quiz session' });
+});
+
+router.get('/questionnaire/edit/:id', function(req, res, next) {
+  res.render('questionnaire/upsert', { title: 'Weekly Youth Meet - Quiz session' });
 });
 
 module.exports = router;

@@ -1,6 +1,6 @@
 function hookVuejs() {
     new Vue({
-        el: "#vue-app-create-questionnaire",
+        el: "#vue-app-upsert-questionnaire",
         data: {
             myMessage: "",
             timestamp: `Timestamp ${new Date().toLocaleString()}`,
@@ -11,6 +11,7 @@ function hookVuejs() {
                 questions: [],
                 closing_text: '',
             },
+            editQId: null,
             formError: {
                 questions: []
             },
@@ -29,7 +30,13 @@ function hookVuejs() {
             },
         },
         mounted: function () {
-            // this.getAllQuestionniare();
+            if (window.location.pathname.split('/questionnaire/edit/')[1]) {
+                this.editQId = Number(window.location.pathname.split('/questionnaire/edit/')[1])
+                console.log('Questionnaire-edit-mounted');
+                this.getQuestionnaireById();
+            } else {
+                console.log('Questionnaire-create-mounted');
+            }
         },
         methods: {
             addQuestion: function () {
@@ -52,6 +59,19 @@ function hookVuejs() {
                 this.$forceUpdate();
             },
 
+            getQuestionnaireById: function () {
+                var _self = this;
+                showLoader(true);
+                axios.get("/api/questionnaire/" + _self.editQId).then(function (response) {
+                    _self.questionnaire = response.data;
+                    _self.questionnaire.questions = JSON.parse(response.data.questions);
+                    showLoader(false);
+                }).catch((err) => {
+                    console.log('error fetching questionnaire', err);
+                    showLoader(false);
+                })
+            },
+
             validatePayload: function (payload) {
                 var _self = this;
                 for (var i = 0; i < Object.keys(payload).length; i++) {
@@ -71,8 +91,8 @@ function hookVuejs() {
                 _self.formError.questions = [];
                 for (var i = 0; i < payload.questions.length; i++) {
                     if (payload.questions[i].question.english == undefined || !payload.questions[i].question.english.toString().replace(/ /g, "").length) {
-                        if(!_self.formError.questions[i]) {
-                            _self.formError.questions[i] = { question: { english: "invalid question"}}
+                        if (!_self.formError.questions[i]) {
+                            _self.formError.questions[i] = { question: { english: "invalid question" } }
                         } else {
                             _self.formError.questions[i].question['english'] = "invalid question";
                         }
@@ -81,8 +101,8 @@ function hookVuejs() {
                     }
 
                     if (payload.questions[i].question.tamil == undefined || !payload.questions[i].question.tamil.toString().replace(/ /g, "").length) {
-                        if(!_self.formError.questions[i]) {
-                            _self.formError.questions[i] = { question: { tamil: "invalid question"}}
+                        if (!_self.formError.questions[i]) {
+                            _self.formError.questions[i] = { question: { tamil: "invalid question" } }
                         } else {
                             _self.formError.questions[i].question['tamil'] = "invalid question";
                         }
@@ -92,8 +112,8 @@ function hookVuejs() {
 
 
                     if (payload.questions[i].answer.english == undefined || !payload.questions[i].answer.english.toString().replace(/ /g, "").length) {
-                        if(!_self.formError.questions[i]) {
-                            _self.formError.questions[i] = { answer: { english: "invalid answer"}}
+                        if (!_self.formError.questions[i]) {
+                            _self.formError.questions[i] = { answer: { english: "invalid answer" } }
                         } else {
                             _self.formError.questions[i].answer['english'] = "invalid answer";
                         }
@@ -102,8 +122,8 @@ function hookVuejs() {
                     }
 
                     if (payload.questions[i].answer.tamil == undefined || !payload.questions[i].answer.tamil.toString().replace(/ /g, "").length) {
-                        if(!_self.formError.questions[i]) {
-                            _self.formError.questions[i] = { answer: { tamil: "invalid answer"}}
+                        if (!_self.formError.questions[i]) {
+                            _self.formError.questions[i] = { answer: { tamil: "invalid answer" } }
                         } else {
                             _self.formError.questions[i].answer['tamil'] = "invalid answer";
                         }
@@ -120,7 +140,15 @@ function hookVuejs() {
                 }
             },
 
-            createQuestionnare: function (event) {
+            updateQuestionnaire: function (event) {
+                event.preventDefault();
+                var _self = this;
+                var payload = _self.questionnaire;
+                showLoader(true);
+
+            },
+
+            submitQuestionnare: function (event) {
                 event.preventDefault();
                 var _self = this;
                 var payload = _self.questionnaire;
@@ -128,21 +156,39 @@ function hookVuejs() {
                 //     return;
                 // }
                 showLoader(true);
-                axios.post("https://bible-quiz-app.herokuapp.com/api/questionnaire/", payload)
-                .then(function(result) {
-                    showLoader(false);
-                    $('#show_message').modal('show');
-                    $('#show_message').on('shown.bs.modal', function (e) {
-                        $('#message_content').html("<p>Questionnaire created successfully</p>" + "<p>link => https://bible-quiz-app.herokuapp.com/quiz/" + result.data.id + "</p>");
-                    })
-                })
-                .catch(function(err) {
-                    showLoader(false);
-                    $('#show_message').modal('show');
-                    $('#show_message').on('shown.bs.modal', function (e) {
-                        $('#message_content').text("Questionnaire creation failed");
-                    })
-                })
+                if (_self.editQId) {
+                    axios.put("/api/questionnaire/" + payload.id, payload)
+                        .then(function (result) {
+                            showLoader(false);
+                            $('#show_message').modal('show');
+                            $('#show_message').on('shown.bs.modal', function (e) {
+                                $('#message_content').html("<p>Questionnaire updated successfully</p>" + "<p>link => https://bible-quiz-app.herokuapp.com/quiz/" + result.data.id + "</p>");
+                            })
+                        })
+                        .catch(function (err) {
+                            showLoader(false);
+                            $('#show_message').modal('show');
+                            $('#show_message').on('shown.bs.modal', function (e) {
+                                $('#message_content').text("Questionnaire update failed");
+                            })
+                        })
+                } else {
+                    axios.post("/api/questionnaire/", payload)
+                        .then(function (result) {
+                            showLoader(false);
+                            $('#show_message').modal('show');
+                            $('#show_message').on('shown.bs.modal', function (e) {
+                                $('#message_content').html("<p>Questionnaire created successfully</p>" + "<p>link => https://bible-quiz-app.herokuapp.com/quiz/" + result.data.id + "</p>");
+                            })
+                        })
+                        .catch(function (err) {
+                            showLoader(false);
+                            $('#show_message').modal('show');
+                            $('#show_message').on('shown.bs.modal', function (e) {
+                                $('#message_content').text("Questionnaire creation failed");
+                            })
+                        })
+                }
             },
         },
     });
