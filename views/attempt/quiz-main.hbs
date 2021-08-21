@@ -58,7 +58,7 @@
                             <label style="" class="d-flex align-items-center justify-content-between w-full text-center"
                                 :for="'radio-question-' + currentQuestionNo + '-' + index">
                                 <p class="mb-0 mr-2 px-3 pb-2 pt-3 option-card">\{{option}}</p>
-                                <img :src="(index === 0 && '/img/option-A.svg') || (index === 1 && '/img/option-B.svg') || (index === 2 && '/img/option-C.svg')"
+                                <img class="border-pink br-15px" :src="(index === 0 && '/img/option-A.svg') || (index === 1 && '/img/option-B.svg') || (index === 2 && '/img/option-C.svg')"
                                     style="width: 60px;" alt="">
                             </label>
                         </div>
@@ -74,7 +74,7 @@
                             \{{language === 'english' ? 'Question' : 'வினா என்'}}</p> --}}
                     </div>
                     <div>
-                        <div class="timer-wrapper border-pink br-15px" style="width: 100px; height: 100px;">
+                        <div class="timer-wrapper border-pink" style="width: 100px; height: 100px;">
                             <h1 class="text-white mb-0 mt-2" style="font-size: 3rem !important;">\{{getCurrentTimer}}
                             </h1>
                         </div>
