@@ -13,18 +13,18 @@
                 <h4 class="text-center">\{{user.church}}</h4>
             </div>
             <div class="score-wrapper mx-auto d-flex justify-content-center align-items-center">
-                <img class="position-relative" src="/img/score-img.svg" width="250px" alt="">
+                <img class="position-relative br-50pc" src="/img/celebration.gif" width="250px" height="250px" alt="">
                 <div class="position-absolute">
                     <h1 class="font-weight-bold display-1 text-center">\{{myScore}}</h1>
                     <h1 class="text-center">out of \{{totalScore}}</h1>
                 </div>
             </div>
             <h3 class="text-center my-3">time-taken: \{{timeTook}} sec</h3>
-            <div class="col-12 col-sm-12 col-md-7 mx-auto pt-3 pt-sm-5 pt-md-5">
+            <div class="col-12 col-sm-12 col-md-7 mx-auto pt-3 pt-sm-3 pt-md-3">
                 <button @click="viewResult()" class="btn  p-2 pt-3 option-card"
                     style="background-color: #07c806; font-size: 1.5rem">View Responses</button>
                 <a class="cursor-pointer" @click="logout()">
-                    <p class="text-center text-primary mt-3" style="font-size: 1.5rem">Logout</p>
+                    <p class="text-center text-dark mt-3" style="font-size: 1.5rem">Logout</p>
                 </a>
             </div>
         </div>
