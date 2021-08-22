@@ -20,7 +20,7 @@ module.exports = {
       .then((questionnaire) => {
         if (!questionnaire) {
           return res.status(404).send({
-            message: "User Not Found",
+            message: "Questionnaire Not Found",
           });
         }
         return res.status(200).send(questionnaire);
@@ -55,7 +55,7 @@ module.exports = {
       .then((questionnaire) => {
         if (!questionnaire) {
           return res.status(404).send({
-            message: "User Not Found",
+            message: "Questionnaire Not Found",
           });
         }
         return questionnaire

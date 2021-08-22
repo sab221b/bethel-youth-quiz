@@ -9,7 +9,7 @@ module.exports = {
             include: ["participant"],
             order: [
                 ['my_score', 'DESC'],
-                // ['id', 'ASC'],
+                ['time_taken', 'ASC'],
             ]
         })
             .then((userResp) => {
@@ -23,7 +23,7 @@ module.exports = {
     getById(req, res) {
         return ParticipantResponse.findByPk(req.params.id, {
             include: [],
-            order: [["createdAt", "DESC"]],
+            // order: [["createdAt", "DESC"]],
         })
             .then((questionnaire) => {
                 if (!questionnaire) {
