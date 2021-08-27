@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="p-2 p-sm-3 p-md-5 mt-4 mt-sm-4 mt-md-0 text-center question-card">
-                <h4 class="font-weight-bold text-center" v-html="currentQuestion.question[language]"></h4>
+                <h4 v-html="currentQuestion.question[language]" class="font-weight-bold text-center" :class="{'h5': isPhone, 'h4': !isPhone, }"></h4>
             </div>
             <div class="table-responsive mt-4">
                 <table v-if="currentQuestion.list && currentQuestion.list[language].length" class="table table-striped">

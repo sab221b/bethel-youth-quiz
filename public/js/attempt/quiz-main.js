@@ -18,7 +18,8 @@ function hookVuejs() {
             selectedOption: '',
             activeTimer: 'quiz_timer',
             start_time: "",
-            end_time: ""
+            end_time: "",
+            isPhone: null,
         },
         computed: {
             getCurrentTimer: function() {
@@ -33,6 +34,7 @@ function hookVuejs() {
         mounted: function () {
             console.log("quiz-main-page mounted");
             this.checkUser();
+            window.screen.width < 576 ? this.isPhone = true : this.isPhone = false;
         },
         methods: {
             checkUser: function () {

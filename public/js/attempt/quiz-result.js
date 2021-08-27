@@ -16,6 +16,7 @@ function hookVuejs() {
             totalScore: 0,
             myScore: 0,
             timeTook: 0,
+            isPhone: null,
         },
         computed: {},
         filters: {
@@ -26,6 +27,7 @@ function hookVuejs() {
         mounted: function () {
             console.log("quiz-result-page mounted");
             this.checkUser();
+            window.screen.width < 576 ? this.isPhone = true : this.isPhone = false;
         },
         methods: {
             checkUser: function () {
