@@ -88,10 +88,13 @@ function hookVuejs() {
             startTimer: function () {
                 var _self = this;
                 var startSec = 0;
+                var maxTime = 25;
+                if(_self.currentQuestion.list) {
+                    maxTime = 35;
+                }
                 _self.activeTimer = setInterval(function () {
-                    if (startSec < 25) {
-                        console.log('seconds-left', 24 - startSec);
-                        _self.currentTimer = 24 - startSec;
+                    if (startSec < maxTime) {
+                        _self.currentTimer = (maxTime - 1) - startSec;
                         startSec++;
                         _self.$forceUpdate();
                     } else {

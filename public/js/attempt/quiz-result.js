@@ -80,6 +80,13 @@ function hookVuejs() {
                 this.selectedOption = questions[this.currentQuestionNo].user_answer
             },
 
+            prevResponse: function () {
+                if (this.currentQuestionNo > 0) {
+                    this.currentQuestionNo--;
+                    this.currentQuestion = this.questions[this.currentQuestionNo];
+                    this.selectedOption = this.questions[this.currentQuestionNo].user_answer;
+                }
+            },
             nextResponse: function () {
                 if (this.currentQuestionNo < this.questions.length - 1) {
                     this.currentQuestionNo++;
