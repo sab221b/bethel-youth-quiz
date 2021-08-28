@@ -85,6 +85,11 @@ function hookVuejs() {
                     this.currentQuestionNo--;
                     this.currentQuestion = this.questions[this.currentQuestionNo];
                     this.selectedOption = this.questions[this.currentQuestionNo].user_answer;
+                } else {
+                    this.currentQuestion = null;
+                    this.showLoading = false;
+                    this.showQuiz = false;
+                    this.showScore = true;
                 }
             },
             nextResponse: function () {
