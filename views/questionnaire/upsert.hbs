@@ -1,4 +1,4 @@
- <link rel='stylesheet' href='/css/upsert.css' />
+<link rel='stylesheet' href='/css/upsert.css' />
 <script src="/js/questionnaire/upsert.js"></script>
 <div class="main-header bg-secondary">
     <h1 class="h6 d-block d-sm-block d-md-none text-white mb-0 pl-4 w-100">{{title}}</h1>
@@ -22,18 +22,17 @@
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea type="text" class="form-control" id="description" v-model="questionnaire.description" rows="3"
-                        placeholder="Give a description for the quiz"></textarea>
+                    <textarea type="text" class="form-control" id="description" v-model="questionnaire.description"
+                        rows="3" placeholder="Give a description for the quiz"></textarea>
                     <small v-if="formError && formError.description"
                         class="form-text text-danger pl-1">\{{formError.description}}</small>
                 </div>
                 <div class="form-group form-check">
-                    <input type="checkbox" checked="true" v-model="questionnaire.auto_presentation" class="form-check-input"
-                        id="auto_presentation">
+                    <input type="checkbox" checked="true" v-model="questionnaire.auto_presentation"
+                        class="form-check-input" id="auto_presentation">
                     <label class="form-check-label" for="auto_presentation">Auto-present</label>
                 </div>
-                <div v-for="(item, index) in questionnaire.questions"
-                    class="border rounded border-secondary mb-3">
+                <div v-for="(item, index) in questionnaire.questions" class="border rounded border-secondary mb-3">
                     <div class="card-header bg-dark text-white">
                         Question number: \{{index + 1}}
                     </div>
@@ -51,7 +50,27 @@
                             v-if="formError && formError?.questions?.length && formError?.questions[index]?.question?.tamil"
                             class="form-text text-danger pl-1">\{{formError?.questions?.length &&
                             formError?.questions[index]?.question?.tamil}}</small>
-
+                        <div class="d-flex align-items-center my-3">
+                            <label :for="'question-show-list' + index" class="my-2">Add list: </label>
+                            <input type="checkbox" class="mx-2" :id="'question-show-list' + index"
+                                v-model="item.showList">
+                        </div>
+                        <div v-if="item.showList">
+                            <label class="my-2">List in Englist </label>
+                            <div class="col-12 pl-0">
+                                <div v-for="(option, idx) in item.list.english">
+                                    <input type="text" class="form-control mb-3" :id="'english-option-' + idx"
+                                        v-model="item.list.english[idx]" placeholder="List in english">
+                                </div>
+                            </div>
+                            <label class="my-2">List in Tamil </label>
+                            <div class="col-12 px-0">
+                                <div v-for="(option, idx) in item.list.tamil">
+                                    <input type="text" class="form-control mb-3" :id="'tamil-option-' + idx"
+                                        v-model="item.list.tamil[idx]" placeholder="List in tamil">
+                                </div>
+                            </div>
+                        </div>
                         <label class="my-2">Options: </label>
                         <div class="d-flex">
                             <div class="col-6 pl-0">
@@ -93,12 +112,12 @@
                     <h5 class="card-title text-center text-white font-weight-bold">Add a Question</h5>
                     <i aria-hidden="true" class="fa fa-plus fa-2x w-100 text-center text-white"></i>
                 </div>
-                <small v-if="!questionnaire.questions.length"
-                        class="form-text text-danger pl-1">Questions required</small>
+                <small v-if="!questionnaire.questions.length" class="form-text text-danger pl-1">Questions
+                    required</small>
                 <div class="form-group mt-3">
                     <label for="closing_text">Closing text</label>
-                    <textarea type="text" class="form-control" id="closing_text" v-model="questionnaire.closing_text" rows="3"
-                        placeholder="Give a closing_text for the quiz"></textarea>
+                    <textarea type="text" class="form-control" id="closing_text" v-model="questionnaire.closing_text"
+                        rows="3" placeholder="Give a closing_text for the quiz"></textarea>
                     <small v-if="formError && formError.closing_text"
                         class="form-text text-danger pl-1">\{{formError.closing_text}}</small>
                 </div>

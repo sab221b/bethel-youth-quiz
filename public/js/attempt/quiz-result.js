@@ -16,6 +16,7 @@ function hookVuejs() {
             totalScore: 0,
             myScore: 0,
             timeTook: 0,
+            isPhone: null,
         },
         computed: {},
         filters: {
@@ -26,6 +27,7 @@ function hookVuejs() {
         mounted: function () {
             console.log("quiz-result-page mounted");
             this.checkUser();
+            window.screen.width < 576 ? this.isPhone = true : this.isPhone = false;
         },
         methods: {
             checkUser: function () {
@@ -78,6 +80,18 @@ function hookVuejs() {
                 this.selectedOption = questions[this.currentQuestionNo].user_answer
             },
 
+            prevResponse: function () {
+                if (this.currentQuestionNo > 0) {
+                    this.currentQuestionNo--;
+                    this.currentQuestion = this.questions[this.currentQuestionNo];
+                    this.selectedOption = this.questions[this.currentQuestionNo].user_answer;
+                } else {
+                    this.currentQuestion = null;
+                    this.showLoading = false;
+                    this.showQuiz = false;
+                    this.showScore = true;
+                }
+            },
             nextResponse: function () {
                 if (this.currentQuestionNo < this.questions.length - 1) {
                     this.currentQuestionNo++;

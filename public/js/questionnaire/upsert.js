@@ -10,6 +10,7 @@ function hookVuejs() {
                 auto_presentation: true,
                 questions: [],
                 closing_text: '',
+                showList: false,
             },
             editQId: null,
             formError: {
@@ -44,6 +45,11 @@ function hookVuejs() {
                     question: {
                         tamil: "",
                         english: ""
+                    },
+                    showList: false,
+                    list: {
+                        tamil: ["", "", ""],
+                        english: ["", "", ""]
                     },
                     options: {
                         tamil: ["", "", ""],
@@ -155,6 +161,12 @@ function hookVuejs() {
                 // if (!_self.validatePayload(payload)) {
                 //     return;
                 // }
+                _self.questionnaire.questions = _self.questionnaire.questions.map(function(item) {
+                    if(!item.showList) {
+                        delete item.list;
+                    }
+                    return item;
+                })
                 showLoader(true);
                 if (_self.editQId) {
                     axios.put("/api/questionnaire/" + payload.id, payload)
