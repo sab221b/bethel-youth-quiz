@@ -28,7 +28,7 @@ router.delete("/questionnaire/:id", questionnaireController.delete);
 /* Participant-Response Router */
 router.get("/user-response", userResponseController.list);
 router.get("/user-response/:id", userResponseController.getById);
-// router.post("/user-response", userResponseController.add);
+router.post("/user-response", userResponseController.add);
 router.delete("/user-response/:id", userResponseController.delete);
 
 module.exports = router;
